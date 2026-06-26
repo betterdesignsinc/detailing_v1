@@ -16,7 +16,11 @@ const STEPS = [
   { id: 3, label: "Add-ons", icon: Plus },
 ]
 
+const BUSINESS_WHATSAPP = "61412345678"
+
 export function QuoteCalculator() {
+  const [customerName, setCustomerName] = useState("")
+  const [customerPhone, setCustomerPhone] = useState("")
   const [step, setStep] = useState(1)
   const [vehicleId, setVehicleId] = useState<string | null>(null)
   const [serviceId, setServiceId] = useState<string | null>(null)
@@ -43,7 +47,16 @@ export function QuoteCalculator() {
     setAddOnIds([])
   }
 
-  return (
+  const whatsappMessage=`Hello,
+
+I'd like to book the following detailing package.
+
+Name: ${customerName}
+Phone: ${customerPhone}
+Estimated Total: $${total.toFixed(2)}`;
+const whatsappUrl=`https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(whatsappMessage)}`;
+
+return (
     <section id="quote" className="scroll-mt-24 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-2xl text-center">
